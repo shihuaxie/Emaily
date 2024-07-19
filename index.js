@@ -4,6 +4,7 @@ require('./models/User');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
+const bodyParser = require('body-parser');
 const keys = require('./config/keys');
 require('./services/passport');
 
@@ -12,6 +13,8 @@ mongoose.connect(keys.mongoURI)
     .catch(err => console.log(err));
 
 const app = express();
+
+app.use(bodyParser.json());
 
 app.use(
     cookieSession({
@@ -23,7 +26,9 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-authRoutes(app);
+// authRoutes(app);
+require('./routes/authRoutes')(app);
+require('./routes/billingRoutes')(app);
 
 const PORT = process.env.PORT || 5000;
 

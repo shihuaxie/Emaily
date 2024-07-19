@@ -23,3 +23,5 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+console.log('stripe key is', process.env.REACT_APP_STRIPE_KEY);
+console.log('environment is', process.env.NODE_ENV);
